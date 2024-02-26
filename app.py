@@ -20,19 +20,15 @@ st.title('Analisis Penyewaan Sepeda')
 st.subheader('Data Mentah')
 st.write(data_day)
 
-# Tampilkan diagram bar dengan persentase
+# Tampilkan diagram bar
 st.subheader('Persentase Penyewaan Sepeda pada Hari Berbeda')
 
-# Calculate percentages for each category
-percentages = (jumlah_penyewaan_per_jenis_hari / jumlah_penyewaan_per_jenis_hari.sum()) * 100
-# Concatenate the count and percentage for each bar
-bar_data = pd.DataFrame({
-    'Jumlah Penyewaan': jumlah_penyewaan_per_jenis_hari,
-    'Persentase': percentages
-})
+# Use Streamlit's native charting capabilities for the bar chart
+bar_chart = st.bar_chart(jumlah_penyewaan_per_jenis_hari)
 
-# Use Streamlit's native charting capabilities for the bar chart with percentages
-st.bar_chart(bar_data)
+# Tampilkan persentase pada setiap bar
+for i, val in enumerate(jumlah_penyewaan_per_jenis_hari):
+    st.text(f"{jumlah_penyewaan_per_jenis_hari.index[i]}: {val} ({persentase_penyewaan_per_jenis_hari[i]:.1f}%)")
 
 st.header('Korelasi antara Suhu dan Jumlah Total Penyewaan Sepeda')
 
