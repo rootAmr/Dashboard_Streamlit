@@ -1,11 +1,5 @@
-import sys
-
-# Add the path to the matplotlib backend explicitly
-sys.path.insert(0, "/path/to/matplotlib/backend")
-
 import streamlit as st
 import pandas as pd
-import matplotlib.pyplot as plt
 import seaborn as sns
 
 # Muat data dari tautan yang diberikan
@@ -26,7 +20,7 @@ st.title('Analisis Penyewaan Sepeda')
 st.subheader('Data Mentah')
 st.write(data_day)
 
-# Tampilkan diagram pie
+# Tampilkan diagram pie dengan seaborn
 st.subheader('Persentase Penyewaan Sepeda pada Hari Berbeda')
 fig, ax = plt.subplots(figsize=(8, 8))
 potongan, teks, teks_otomatis = ax.pie(
@@ -52,6 +46,7 @@ elif korelasi < 0:
 else:
     interpretasi_korelasi = "Tidak ada hubungan linear yang signifikan antara suhu dan jumlah total penyewaan sepeda."
 
+# Visualisasi scatter plot dengan seaborn
 fig, ax = plt.subplots(figsize=(10, 6))
 sns.scatterplot(x='temp', y='total_count', data=data_day, ax=ax)
 plt.title(f'Korelasi antara Suhu dan Jumlah Total Penyewaan Sepeda ({korelasi:.2f})')
