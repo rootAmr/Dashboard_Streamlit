@@ -1,40 +1,25 @@
 import streamlit as st
 import pandas as pd
+import matplotlib.pyplot as plt
 
-# Muat data dari tautan yang diberikan
+# Load data from the given link
 data_url = "https://raw.githubusercontent.com/rootAmr/Dashboard_Streamlit/main/streamlite/data_day_cleaned.csv"
 data_day = pd.read_csv(data_url)
 
-def kategorikan_hari(hari):
-    return 'Akhir Pekan/Libur' if hari in ['Sabtu', 'Minggu'] else 'Hari Kerja'
+# Categorize days into weekdays and weekends
+data_day['day_type'] = data_day['weekday'].apply(lambda x: 'Weekend/Holiday' if x in ['Sabtu', 'Minggu'] else 'Weekday')
 
-data_day['jenis_hari'] = data_day['weekday'].apply(kategorikan_hari)
+# Group by day type and calculate rentals
+day_type_rentals = data_day.groupby('day_type')['total_count'].sum()
+day_type_percentages = (day_type_rentals / day_type_rentals.sum()) * 100
 
-jumlah_penyewaan_per_jenis_hari = data_day.groupby('jenis_hari')['total_count'].sum()
-persentase_penyewaan_per_jenis_hari = (jumlah_penyewaan_per_jenis_hari / jumlah_penyewaan_per_jenis_hari.sum()) * 100
+# Create a pie chart
+fig, ax = plt.subplots(figsize=(8, 8))
+wedges, texts, autotexts = ax.pie(day_type_rentals, labels=day_type_rentals.index, autopct=lambda p: '{:.1f}%\n({:.0f} rentals)'.format(p, p * sum(day_type_rentals) / 100), startangle=90, colors=['skyblue', 'lightcoral'])
+ax.legend(wedges, day_type_rentals.index, title='Day Type', loc='center left', bbox_to_anchor=(1, 0, 0.5, 1))
+plt.setp(autotexts, size=8, weight="bold")
 
-# Dashboard Streamlit
-st.title('Analisis Penyewaan Sepeda')
+ax.set_title('Persentase dan Jumlah Penyewaan Sepeda pada Hari Kerja dan Hari Libur')
 
-st.subheader('Data Mentah')
-st.write(data_day)
-
-# Tampilkan diagram pie dengan Streamlit
-st.subheader('Persentase Penyewaan Sepeda pada Hari Berbeda')
-st.bar_chart(jumlah_penyewaan_per_jenis_hari)
-
-st.header('Korelasi antara Suhu dan Jumlah Total Penyewaan Sepeda')
-
-korelasi = data_day['temp'].corr(data_day['total_count'])
-if korelasi > 0:
-    interpretasi_korelasi = "Terdapat korelasi positif antara suhu dan jumlah total penyewaan sepeda."
-elif korelasi < 0:
-    interpretasi_korelasi = "Terdapat korelasi negatif antara suhu dan jumlah total penyewaan sepeda."
-else:
-    interpretasi_korelasi = "Tidak ada hubungan linear yang signifikan antara suhu dan jumlah total penyewaan sepeda."
-
-# Visualisasi scatter plot dengan Streamlit
-st.subheader('Korelasi antara Suhu dan Jumlah Total Penyewaan Sepeda')
-st.scatter_chart(data_day[['temp', 'total_count']])
-
-st.write(interpretasi_korelasi)
+# Display the pie chart using Streamlit
+st.pyplot(fig)
