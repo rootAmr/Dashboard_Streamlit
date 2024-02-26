@@ -3,6 +3,10 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+# Tambahan kode untuk mengatasi masalah Matplotlib dan Streamlit
+st.set_option('deprecation.showPyplotGlobalUse', False)
+
+# Muat data dari tautan yang diberikan
 data_url = "https://raw.githubusercontent.com/rootAmr/Dashboard_Streamlit/main/streamlite/data_day_cleaned.csv"
 data_day = pd.read_csv(data_url)
 
@@ -36,9 +40,7 @@ plt.setp(teks_otomatis, size=8, weight="bold")
 ax.set_title('Persentase dan Jumlah Penyewaan Sepeda pada Hari Kerja dan Hari Libur')
 st.pyplot(fig)
 
-
 st.header('Korelasi antara Suhu dan Jumlah Total Penyewaan Sepeda')
-
 
 korelasi = data_day['temp'].corr(data_day['total_count'])
 if korelasi > 0:
@@ -48,13 +50,11 @@ elif korelasi < 0:
 else:
     interpretasi_korelasi = "Tidak ada hubungan linear yang signifikan antara suhu dan jumlah total penyewaan sepeda."
 
-
 fig, ax = plt.subplots(figsize=(10, 6))
 sns.scatterplot(x='temp', y='total_count', data=data_day, ax=ax)
 plt.title(f'Korelasi antara Suhu dan Jumlah Total Penyewaan Sepeda ({korelasi:.2f})')
 plt.xlabel('Suhu (Ternormalisasi)')
 plt.ylabel('Jumlah Total Penyewaan Sepeda')
 st.pyplot(fig)
-
 
 st.write(interpretasi_korelasi)
