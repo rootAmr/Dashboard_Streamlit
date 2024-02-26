@@ -22,7 +22,7 @@ st.write(data_day)
 
 # Tampilkan diagram pie
 st.subheader('Persentase Penyewaan Sepeda pada Hari Berbeda')
-fig = st.figure(figsize=(8, 8))
+fig, ax = plt.subplots(figsize=(8, 8))
 potongan, teks, teks_otomatis = plt.pie(
     jumlah_penyewaan_per_jenis_hari,
     labels=jumlah_penyewaan_per_jenis_hari.index,
