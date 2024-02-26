@@ -21,7 +21,7 @@ st.write(data_day)
 
 # Tampilkan diagram pie dengan Streamlit
 st.subheader('Persentase Penyewaan Sepeda pada Hari Berbeda')
-st.bar_chart(jumlah_penyewaan_per_jenis_hari)
+st.pie_chart(jumlah_penyewaan_per_jenis_hari)
 
 st.header('Korelasi antara Suhu dan Jumlah Total Penyewaan Sepeda')
 
