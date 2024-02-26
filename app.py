@@ -20,18 +20,11 @@ st.title('Analisis Penyewaan Sepeda')
 st.subheader('Data Mentah')
 st.write(data_day)
 
-# Tampilkan diagram pie
+# Tampilkan diagram bar
 st.subheader('Persentase Penyewaan Sepeda pada Hari Berbeda')
 
-# Use Streamlit's native charting capabilities for the pie chart
-st.write(alt.Chart(data_day).mark_circle().encode(
-    alt.X('jenis_hari:N', title='Jenis Hari'),
-    alt.Y('total_count:Q', title='Jumlah Penyewaan'),
-    color='jenis_hari:N',
-    tooltip=['jenis_hari:N', 'total_count:Q']
-).properties(
-    title='Persentase dan Jumlah Penyewaan Sepeda pada Hari Kerja dan Hari Libur'
-))
+# Use Streamlit's native charting capabilities for the bar chart
+st.bar_chart(jumlah_penyewaan_per_jenis_hari)
 
 st.header('Korelasi antara Suhu dan Jumlah Total Penyewaan Sepeda')
 
