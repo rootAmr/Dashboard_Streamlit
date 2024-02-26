@@ -16,7 +16,7 @@ Lihat detail analisis dan visualisasi pada [notebook](https://colab.research.goo
 ## 📊 Dasbor dengan Streamlit
 ### Streamlit Cloud
 
-Lihat dasbor secara langsung di streamlit cloud melalui tautan ini: https://dasbordkuy.streamlit.app/
+Lihat dasbor secara langsung di streamlit cloud melalui tautan ini: https://dashboarda.streamlit.app/
 
 ### Menjalankan Streamlit Secara Lokal
 
