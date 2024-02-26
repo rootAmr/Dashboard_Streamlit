@@ -55,3 +55,15 @@ scatter_chart = alt.Chart(data_day).mark_circle().encode(
 st.altair_chart(scatter_chart, use_container_width=True)
 
 st.write(interpretasi_korelasi)
+
+# Kesimpulan
+st.header('Kesimpulan')
+
+st.write("""
+Terdapat hubungan positif antara suhu dan jumlah total sepeda, informasi ini bisa berguna untuk pengelola sistem penyewaan sepeda. 
+Mereka dapat mengoptimalkan strategi pemasaran atau menyesuaikan inventaris sepeda berdasarkan perubahan musim.
+
+Terdapat perbedaan yang signifikan dalam pola penyewaan sepeda antara hari kerja dan hari libur. 
+Mayoritas penyewaan terjadi pada hari kerja, sedangkan penyewaan pada hari libur merupakan sebagian kecil dari total penyewaan sepeda. 
+Ini mungkin disebabkan oleh aktivitas bersepeda yang lebih tinggi di hari kerja, saat orang-orang mungkin menggunakan sepeda untuk transportasi sehari-hari.
+""")
