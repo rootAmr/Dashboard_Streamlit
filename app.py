@@ -3,8 +3,6 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-# Tambahan kode untuk mengatasi masalah Matplotlib dan Streamlit
-st.set_option('deprecation.showPyplotGlobalUse', False)
 
 # Muat data dari tautan yang diberikan
 data_url = "https://raw.githubusercontent.com/rootAmr/Dashboard_Streamlit/main/streamlite/data_day_cleaned.csv"
