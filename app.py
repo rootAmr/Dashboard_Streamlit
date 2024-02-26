@@ -1,7 +1,6 @@
 import streamlit as st
 import pandas as pd
-import altair as alt
-import seaborn as sns
+import plotly.express as px
 
 # Muat data dari tautan yang diberikan
 data_url = "https://raw.githubusercontent.com/rootAmr/Dashboard_Streamlit/main/streamlite/data_day_cleaned.csv"
@@ -47,18 +46,11 @@ elif korelasi < 0:
 else:
     interpretasi_korelasi = "Tidak ada hubungan linear yang signifikan antara suhu dan jumlah total penyewaan sepeda."
 
-# Create an Altair scatter plot
-scatter_chart = alt.Chart(data_day).mark_circle().encode(
-    x='temp',
-    y='total_count',
-    tooltip=['temp', 'total_count']
-).properties(
-    title=f'Korelasi antara Suhu dan Jumlah Total Penyewaan Sepeda ({korelasi:.2f})',
-    width=600,
-    height=400
-)
+# Create a Plotly scatter plot
+scatter_chart = px.scatter(data_day, x='temp', y='total_count', title=f'Korelasi antara Suhu dan Jumlah Total Penyewaan Sepeda ({korelasi:.2f})')
+scatter_chart.update_layout(xaxis_title='Suhu (Ternormalisasi)', yaxis_title='Jumlah Total Penyewaan Sepeda')
 
-# Display the Altair chart using Streamlit
-st.altair_chart(scatter_chart, use_container_width=True)
+# Display the Plotly chart using Streamlit
+st.plotly_chart(scatter_chart)
 
 st.write(interpretasi_korelasi)
