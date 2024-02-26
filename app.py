@@ -22,18 +22,17 @@ st.write(data_day)
 
 # Tampilkan diagram pie
 st.subheader('Persentase Penyewaan Sepeda pada Hari Berbeda')
-fig, ax = plt.subplots(figsize=(8, 8))
-potongan, teks, teks_otomatis = ax.pie(
+fig = st.figure(figsize=(8, 8))
+potongan, teks, teks_otomatis = plt.pie(
     jumlah_penyewaan_per_jenis_hari,
     labels=jumlah_penyewaan_per_jenis_hari.index,
     autopct=lambda p: '{:.1f}%\n({:.0f} kali penyewaan)'.format(p, p * sum(jumlah_penyewaan_per_jenis_hari) / 100),
     startangle=90,
     colors=['skyblue', 'lightcoral']
 )
-ax.legend(potongan, jumlah_penyewaan_per_jenis_hari.index, title='Jenis Hari', loc='center left', bbox_to_anchor=(1, 0, 0.5, 1))
+plt.legend(potongan, jumlah_penyewaan_per_jenis_hari.index, title='Jenis Hari', loc='center left', bbox_to_anchor=(1, 0, 0.5, 1))
 plt.setp(teks_otomatis, size=8, weight="bold")
-
-ax.set_title('Persentase dan Jumlah Penyewaan Sepeda pada Hari Kerja dan Hari Libur')
+plt.title('Persentase dan Jumlah Penyewaan Sepeda pada Hari Kerja dan Hari Libur')
 st.pyplot(fig)
 
 st.header('Korelasi antara Suhu dan Jumlah Total Penyewaan Sepeda')
