@@ -1,54 +1,33 @@
-# 🚲 Capital Bikeshare: Bikesharing Analysis and Dashboard
+# 🚲  Analisis dan Dasbor Capital Bikeshare
 
-## 📝 Analysis with Jupyter Notebook
+## 📝  Analisis dengan Jupyter Notebook
 
-🚧 See the detail of this analysis and visualization on the [notebook](https://github.com/fikrionii/Dicoding-Bike-Sharing/blob/main/notebook-bikeshare-analysis.ipynb) 🚧
+Lihat detail analisis dan visualisasi pada [notebook](https://colab.research.google.com/drive/1XfNXg2WmAXtFVu6Y_0b7vLM_Uiloy0On?usp=sharing) 
 
-### Defining Question
-1. How is the trend in the number of bike-sharing rides in recent years?
-2. What is the usage pattern of bike-sharing rides based on time of day?
-3. What season has the highest bike-sharing rides?
-4. What is the usage pattern of bike-sharing rides based on day of the week?
-5. Are there any correlations between temperatures that indicate conditions when bike-sharing rides are high?
-6. Does weather affect bikeshare usage?
+### Pertanyaan
+1. Apa korelasi antara suhu dan jumlah total sepeda yang disewa?
+2. Berapa peresentasi penyewaan sepeda berbeda antara hari kerja dan hari libur?
 
-### Insights and Findings
-1. The number of bikeshare rides in 2012 was higher than in 2011. Both years showed the same trend and seasonality, with the number of rides increasing in the middle of the year and decreasing at the beginning and end of the year.
+### Jawaban
+1.Terdapat hubungan positif antara suhu dan jumlah total sepeda, informasi ini bisa berguna untuk pengelola sistem penyewaan sepeda. Mereka dapat mengoptimalkan strategi pemasaran atau menyesuaikan inventaris sepeda berdasarkan perubahan musim.
 
-2. For registered users, the number of rides peaked at 8:00 AM and 5:00 PM, suggesting that they may have used the bikes to commute to work. For casual users, the number of rides started to increase during the day and decreased during the night.
+2. Terdapat perbedaan yang signifikan dalam pola penyewaan sepeda antara hari kerja dan hari libur. Mayoritas penyewaan terjadi pada hari kerja, sedangkan penyewaan pada hari libur merupakan sebagian kecil dari total penyewaan sepeda. Ini mungkin disebabkan oleh aktivitas bersepeda yang lebih tinggi di hari kerja, saat orang-orang mungkin menggunakan sepeda untuk transportasi sehari-hari.
 
-3. Bikeshare rides were highest during the summer season and lowest during the winter season.
-
-4. For registered users, the number of rides was higher during weekdays. This is consistent with the findings in question 2, suggesting that registered users likely used the bikes to commute to work. For casual users, the number of rides was higher on weekends than on weekdays, indicating that they used the bikes for leisure activities on weekends.
-
-5. Yes, there is a moderate correlation between temperature and the number of bikeshare rides. The number of rides is lowest at colder temperatures, which occur during the winter, and starts to increase as the temperature increases, which happens in the summer. However, there is a "sweet spot" or temperature range when the number of rides is highest, which is between 20°C and 30°C. This temperature range typically occurs during the summer and fall seasons. On days with these temperature conditions, we can expect the number of bikeshare rides to be high.
-
-6. Yes, the number of rides is significantly higher during clear weather than during more extreme weather conditions.
-
-## 📊 Dashboard with Streamlit
+## 📊 Dasbor dengan Streamlit
 ### Streamlit Cloud
 
-🚧 View the dashboard on streamlit could directly on this link: https://capital-bikeshare-alfikri.streamlit.app/ 🚧
+Lihat dasbor secara langsung di streamlit cloud melalui tautan ini: https://dasbordkuy.streamlit.app/
 
-The dashboard shows the count of total rides across the year and season. It also shows the difference casual riders and registered riders use of the bikesharing service, based on hour and day of the week.
+### Menjalankan Streamlit Secara Lokal
 
-<p align="center">
-  <img src="/image/streamlit_dashboard.png" />
+#### Install Dependensi
 
-### Run Streamlit on Local
-
-#### Install Dependencies
-
-To install all the required libraries, open your terminal/command prompt/conda prompt, navigate to this project folder, and run the following command:
+Untuk menginstal semua perpustakaan yang diperlukan, buka terminal/prompt perintah/conda prompt, navigasi ke folder proyek ini, dan jalankan perintah berikut:
 
 ```bash
 pip install -r requirements.txt
 ```
-
-#### Run Dashboard
+### run app
 ```bash
-cd dashboard
 streamlit run dashboard.py
 ```
-
-Thanks for visiting my project! 🔥
