@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import altair as alt
 
-# Muat data dari tautan yang diberikan
+
 data_url = "https://raw.githubusercontent.com/rootAmr/Dashboard_Streamlit/main/streamlite/data_day_cleaned.csv"
 data_day = pd.read_csv(data_url)
 
@@ -14,19 +14,16 @@ data_day['jenis_hari'] = data_day['weekday'].apply(kategorikan_hari)
 jumlah_penyewaan_per_jenis_hari = data_day.groupby('jenis_hari')['total_count'].sum()
 persentase_penyewaan_per_jenis_hari = (jumlah_penyewaan_per_jenis_hari / jumlah_penyewaan_per_jenis_hari.sum()) * 100
 
-# Dashboard Streamlit
 st.title('Analisis Penyewaan Sepeda')
 
 st.subheader('Data Mentah')
 st.write(data_day)
 
-# Tampilkan diagram bar
+
 st.subheader('Persentase Penyewaan Sepeda pada Hari Berbeda')
 
-# Use Streamlit's native charting capabilities for the bar chart
 bar_chart = st.bar_chart(jumlah_penyewaan_per_jenis_hari)
 
-# Tampilkan persentase pada setiap bar
 for i, val in enumerate(jumlah_penyewaan_per_jenis_hari):
     st.text(f"{jumlah_penyewaan_per_jenis_hari.index[i]}: {val} ({persentase_penyewaan_per_jenis_hari[i]:.1f}%)")
 
@@ -40,7 +37,6 @@ elif korelasi < 0:
 else:
     interpretasi_korelasi = "Tidak ada hubungan linear yang signifikan antara suhu dan jumlah total penyewaan sepeda."
 
-# Create an Altair scatter plot
 scatter_chart = alt.Chart(data_day).mark_circle().encode(
     x='temp',
     y='total_count',
@@ -51,12 +47,10 @@ scatter_chart = alt.Chart(data_day).mark_circle().encode(
     height=400
 )
 
-# Display the Altair chart using Streamlit
 st.altair_chart(scatter_chart, use_container_width=True)
 
 st.write(interpretasi_korelasi)
 
-# Kesimpulan
 st.header('Kesimpulan')
 
 st.write("""
