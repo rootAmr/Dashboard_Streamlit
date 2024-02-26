@@ -1,8 +1,7 @@
 import streamlit as st
 import pandas as pd
-import matplotlib.pyplot as plt
+import altair as alt
 import seaborn as sns
-
 
 # Muat data dari tautan yang diberikan
 data_url = "https://raw.githubusercontent.com/rootAmr/Dashboard_Streamlit/main/streamlite/data_day_cleaned.csv"
@@ -48,11 +47,18 @@ elif korelasi < 0:
 else:
     interpretasi_korelasi = "Tidak ada hubungan linear yang signifikan antara suhu dan jumlah total penyewaan sepeda."
 
-fig, ax = plt.subplots(figsize=(10, 6))
-sns.scatterplot(x='temp', y='total_count', data=data_day, ax=ax)
-plt.title(f'Korelasi antara Suhu dan Jumlah Total Penyewaan Sepeda ({korelasi:.2f})')
-plt.xlabel('Suhu (Ternormalisasi)')
-plt.ylabel('Jumlah Total Penyewaan Sepeda')
-st.pyplot(fig)
+# Create an Altair scatter plot
+scatter_chart = alt.Chart(data_day).mark_circle().encode(
+    x='temp',
+    y='total_count',
+    tooltip=['temp', 'total_count']
+).properties(
+    title=f'Korelasi antara Suhu dan Jumlah Total Penyewaan Sepeda ({korelasi:.2f})',
+    width=600,
+    height=400
+)
+
+# Display the Altair chart using Streamlit
+st.altair_chart(scatter_chart, use_container_width=True)
 
 st.write(interpretasi_korelasi)
